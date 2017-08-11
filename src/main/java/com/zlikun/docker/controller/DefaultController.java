@@ -24,33 +24,4 @@ public class DefaultController {
         return "Redis命令执行工具(WEB版)" ;
     }
 
-    /**
-     * GET 命令
-     * @param key
-     * @return
-     */
-    @RequestMapping(value = "/get/{key}" ,produces = "application/json; charset=utf-8")
-    public Object get(@PathVariable String key) {
-        String value = template.boundValueOps(key).get() ;
-        ModelMap model = new ModelMap() ;
-        model.put("key" ,key) ;
-        model.put("value" ,value) ;
-        return model ;
-    }
-
-    /**
-     * SET 命令
-     * @param key
-     * @param value
-     * @return
-     */
-    @RequestMapping(value = "/set/{key}/{value}" ,produces = "application/json; charset=utf-8")
-    public Object set(@PathVariable String key ,@PathVariable String value) {
-        template.boundValueOps(key).set(value);
-        ModelMap model = new ModelMap() ;
-        model.put("key" ,key) ;
-        model.put("value" ,value) ;
-        return model ;
-    }
-
 }
