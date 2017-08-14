@@ -54,23 +54,21 @@
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.3.4</version>
                 <configuration>
-                    <!-- 指定镜像名称 -->
-                    <imageName>zlikun/service:1.0</imageName>
-                    <!-- 指定基础镜像，相当于Dockerfile中的FROM配置 -->
-                    <baseImage>java:8</baseImage>
-                    <!-- 相当于Dockerfile中的 ENTRYPOINT指令 -->
-                    <entryPoint>["java" ,"-jar" ,"/${project.build.finalName}.jar"]</entryPoint>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}</include>
-                        </resource>
-                    </resources>
+                    <repository>zlikun/${project.build.finalName}</repository>
+                    <tag>1.0</tag>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

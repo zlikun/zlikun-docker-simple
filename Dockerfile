@@ -8,7 +8,7 @@ MAINTAINER zlikun "zlikun-dev@hotmail.com"
 VOLUME /tmp
 
 # 复制文件到容器
-ADD service.jar /service.jar
+ADD target/service.jar /service.jar
 
 # 指定暴露端口
 EXPOSE 80
