@@ -57,17 +57,13 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.0.0</version>
                 <configuration>
-                    <!-- 指定镜像名称 -->
-                    <imageName>zlikun/service:1.0</imageName>
-                    <!-- 指定基础镜像，相当于Dockerfile中的FROM配置 -->
-                    <baseImage>java:8</baseImage>
-                    <!-- 相当于Dockerfile中的 ENTRYPOINT指令 -->
-                    <entryPoint>["java" ,"-jar" ,"/${project.build.finalName}.jar"]</entryPoint>
+                    <imageName>zlikun/${project.build.finalName}:1.0</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
                             <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}</include>
+                            <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
                 </configuration>
